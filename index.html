@@ -12,5 +12,15 @@
 </head>
 
 <body>
-    <img src="/Users/quynhanhha/Downloads/district7map.png" alt="map">
+    <img id="myImage" src="district7map.png" alt="map" width="100">
+    <button onclick="changeImage('new.png')">Đổi ảnh</button>
+  
+    <script>
+      function changeImage(newSource) {
+        document.getElementById('myImage').src = newSource;
+      }
+    </script>
+  
+  </body>
+  </html>
 </body>
