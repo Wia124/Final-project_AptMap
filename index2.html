@@ -4,66 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apartment map in District 7</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<style>
-    .map-container {
-    position: relative;
-    width: 1500px;
-    height: 2000px;
-    background-image: url('D7 map.png'); 
-    background-size: cover;
-
-  }
-
-  .marker {
-    position: absolute; /* Định vị tương đối so với .map-container */
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .marker-1 {
-    top: 50px;
-    left: 100px;
-  }
-
-  .marker-2 {
-    top: 150px;
-    left: 300px;
-    background-color: blue;
-  }
-
-  .info-box {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    display: none; /* Ẩn ban đầu */
-  }
-
-  .marker-1:hover + .info-box-1 {
-    display: block;
-    top: 80px;
-    left: 100px;
-  }
-
-  .marker-2:hover + .info-box-2 {
-    display: block;
-    top: 180px;
-    left: 300px;
-  }
-  </style>
+  <form>
 <div class="map-container"></div>
 <div class="marker marker-1"></div>
-<div class="marker marker-2"></div>
-<div class="info-box info-box-1">Thông tin điểm 1</div>
-<div class="info-box info-box-2">Thông tin điểm 2</div>
-
+<div class= input type="text" name="info-box" div>
+  </form>
 </body>
 </html>
