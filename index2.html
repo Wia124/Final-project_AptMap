@@ -3,14 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apartment map in District 7</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Been Together App</title>
+  </head>
+  <body>
+  
+      <div class="container">
+          <h1>Been Together For</h1>
+  
+          <div class="days-display">
+              <p id="daysTogether">0</p>
+              <p class="days-label">Days</p>
+          </div>
+  
+          <div class="date-input-group">
+              <label for="startDate">Our Special Date:</label>
+              <input type="date" id="startDate" />
+          </div>
+  
+          <p id="message" class="message-info"></p>
+      </div>
+    <style>
+            body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* p-4 */
+            background: linear-gradient(to bottom right, #fbcfe8, #a78bfa); 
+            background-image: url(pexels-designecologist-887349.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem; /* p-8 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            width: 100%;
+            max-width: 28rem; /* max-w-md */
+            text-align: center;
+            transform: scale(1); /* Initial state */
+            transition: transform 0.3s ease-in-out; /* transition-all duration-300 */
+        }
+
+        .container:hover {
+            transform: scale(1.05); /* hover:scale-105 */
+        }
+
+        h1 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            letter-spacing: -0.025em; /* tracking-tight */
+        }
+
+        .days-display {
+            margin-bottom: 2rem; /* mb-8 */
+        }
+
+        #daysTogether {
+            font-size: 3.75rem; /* text-6xl */
+            font-weight: 900; /* font-black */
+            color: #db2777; /* text-pink-600 */
+            /* Animation for pulse effect */
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+
+        .days-label {
+            font-size: 1.25rem; /* text-xl */
+            color: #4b5563; /* text-gray-600 */
+            margin-top: 0.5rem; /* mt-2 */
+        }
+
+        .date-input-group {
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+
+        label {
+            display: block;
+            color: #374151; /* text-gray-700 */
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; 
+            border-radius: 0.5rem; 
+            color: #1f2937; 
+            text-align: center;
+            font-size: 1.125rem; 
+            transition: all 0.2s ease-in-out; 
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: transparent;
+            box-shadow: 0 0 0 2px #ec4899; 
+        }
+
+        #message {
+            font-size: 0.875rem; 
+            margin-bottom: 1rem;
+        }
+
+        .message-info {
+            color: #6b7280;
+        }
+
+        .message-error {
+            color: #ef4444;
+        }
+    </style>
 </head>
 <body>
-  <form>
-<div class="map-container"></div>
-<div class="marker marker-1"></div>
-<div class= input type="text" name="info-box" div>
-  </form>
+
+    <div class="container">
+        <h1>Been Together For</h1>
+
+        <div class="days-display">
+            <p id="daysTogether">0</p>
+            <p class="days-label">Days</p>
+        </div>
+
+        <div class="date-input-group">
+            <label for="startDate">Our Special Date:</label>
+            <input type="date" id="startDate" />
+        </div>
+
+        <p id="message" class="message-info"></p>
+    </div>
+
+    <script>
+        const daysTogetherElement = document.getElementById('daysTogether');
+        const startDateInput = document.getElementById('startDate');
+        const messageElement = document.getElementById('message');
+
+        // Function to display messages
+        function displayMessage(msg, type = 'info') {
+            messageElement.textContent = msg;
+            messageElement.className = `message-${type}`;
+        }
+
+        // Function to calculate days
+        function calculateDays(dateString) {
+            if (!dateString) {
+                daysTogetherElement.textContent = '0';
+                return;
+            }
+            const start = new Date(dateString);
+            const today = new Date();
+            // Reset time components to avoid issues with timezones and daylight saving
+            start.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            const diffTime = Math.abs(today.getTime() - start.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            daysTogetherElement.textContent = diffDays;
+        }
+
+    
+        function loadDateFromLocalStorage() {
+            const savedDate = localStorage.getItem('loveDate');
+            if (savedDate) {
+                startDateInput.value = savedDate;
+                calculateDays(savedDate);
+                displayMessage('Date loaded successfully!');
+            } else {
+                displayMessage('Please select your special date.');
+            }
+        }
+
+        function saveDateToLocalStorage(newDate) {
+            try {
+                localStorage.setItem('loveDate', newDate);
+                displayMessage('Date saved successfully!');
+            } catch (error) {
+                console.error("Error saving date to local storage:", error);
+                displayMessage("Failed to save date. Please try again.", 'error');
+            }
+        }
+
+        startDateInput.addEventListener('change', (e) => {
+            const newDate = e.target.value;
+            calculateDays(newDate);
+            saveDateToLocalStorage(newDate);
+        });
+
+  
+        window.onload = loadDateFromLocalStorage;
+    </script>
 </body>
 </html>

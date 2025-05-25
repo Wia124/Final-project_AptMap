@@ -1,34 +1,104 @@
-
-::before
-::after
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+ /* Custom styles */
+ body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* p-4 */
+  background: linear-gradient(to bottom right, #fbcfe8, #a78bfa); /* from-pink-300 to-purple-400 */
+  background-size: cover;
+  background-image: url(pexels-designecologist-887349.jpg);
 }
 
+.container {
+  background-color: white;
+  padding: 2rem; /* p-8 */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+  width: 100%;
+  max-width: 28rem; /* max-w-md */
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
 
+.container:hover {
+  transform: scale(1.05); /* hover:scale-105 */
+}
 
-.map-container {
-    position: relative;
-    width: 1500px;
-    height: 2000px;
-    background-image: url('D7 map.png'); 
-    background-size: cover;
+h1 {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  color: #1f2937; /* text-gray-800 */
+  margin-bottom: 1.5rem; /* mb-6 */
+  letter-spacing: -0.025em; 
+}
 
+.days-display {
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+#daysTogether {
+  font-size: 3.75rem; /* text-6xl */
+  font-weight: 900; /* font-black */
+  color: #db2777; /* text-pink-600 */
+  /* Animation for pulse effect */
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+      opacity: 1;
   }
-
-  .marker {
-    position: absolute; /* Định vị tương đối so với .map-container */
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    cursor: pointer;
+  50% {
+      opacity: .5;
   }
+}
 
-  .marker-1 {
-    top: 50px;
-    left: 100px;
-  }
-  
+.days-label {
+  font-size: 1.25rem; /* text-xl */
+  color: #4b5563; /* text-gray-600 */
+  margin-top: 0.5rem; /* mt-2 */
+}
+
+.date-input-group {
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+label {
+  display: block;
+  color: #374151; /* text-gray-700 */
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 500; /* font-medium */
+  margin-bottom: 0.75rem; /* mb-3 */
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 0.75rem; /* p-3 */
+  border: 1px solid #d1d5db; /* border border-gray-300 */
+  border-radius: 0.5rem; /* rounded-lg */
+  color: #1f2937; /* text-gray-800 */
+  text-align: center;
+  font-size: 1.125rem; /* text-lg */
+  transition: all 0.2s ease-in-out; /* transition duration-200 */
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #ec4899; /* focus:ring-2 focus:ring-pink-500 */
+}
+
+#message {
+  font-size: 0.875rem; /* text-sm */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.message-info {
+  color: #6b7280; /* text-gray-500 */
+}
+
+.message-error {
+  color: #ef4444; /* text-red-500 */
+}
